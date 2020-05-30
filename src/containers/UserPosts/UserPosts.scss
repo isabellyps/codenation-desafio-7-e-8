@@ -5,11 +5,9 @@
   padding: 16px;
   position: relative;
   justify-content: space-between;
-
   & .post {
     margin: 6px;
     width: calc((100% / 2) - 12px);
-
     .post__figure {
       border-radius: 10px;
     }

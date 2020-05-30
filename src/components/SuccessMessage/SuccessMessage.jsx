@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
 
 import "./SuccessMessage.scss";
@@ -28,7 +27,6 @@ const SuccessMessage = () => (
         strokeLinecap="round"
         fill="transparent"
       />
-
       <polyline
         className="successAnimationCheck"
         stroke="#000000"
@@ -37,11 +35,10 @@ const SuccessMessage = () => (
         fill="transparent"
       />
     </svg>
-
     <h2 className="success-message__title">Usuário Cadastrado!</h2>
-
     <div className="success-message__content">
       <p>
+        {" "}
         Visite a página <Link to="/users">users</Link> para visualizar o novo
         usuário
       </p>

@@ -2,18 +2,16 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
 import Topbar from "../../components/Topbar";
-
 import Routes from "../../routes";
-
 import "./App.scss";
 
 const App = () => (
-  <BrowserRouter>
-    <div data-testid="app">
+  <div data-testid="app">
+    <BrowserRouter>
       <Topbar />
       <Routes />
-    </div>
-  </BrowserRouter>
+    </BrowserRouter>
+  </div>
 );
 
 export default App;

@@ -9,15 +9,21 @@ const UserProfile = ({ avatar, name, username }) => {
         <div className="profile-data">
           <div className="user">
             <div className="user__thumb">
-              <img
-                src="https://viniciusvinna.netlify.app/assets/api-instagram/profiles/profile-placeholder.png"
-                alt=""
-              />
+              {avatar.length > 0 ? (
+                <img src={avatar} alt="" />
+              ) : (
+                <img
+                  src="https://viniciusvinna.netlify.app/assets/api-instagram/profiles/profile-placeholder.png"
+                  alt=""
+                />
+              )}
             </div>
-            <p className="user__name">
-              Nome
-              <span>@username</span>
-            </p>
+            {name && (
+              <p className="user__name">
+                {name}
+                <span>@{username}</span>
+              </p>
+            )}
           </div>
         </div>
       </div>

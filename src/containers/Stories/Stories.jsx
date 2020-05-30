@@ -1,45 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 
 import Story from "../../components/Story";
-
 import "./Stories.scss";
 
 const Stories = ({ stories, getUserHandler }) => {
-  const [showStory] = useState(false);
+  const [showStory, toggleShowStory] = useState(false);
+  const [selectedStory, setSelectedHistory] = useState({});
+  const [selectedProfile, setSelectedProfile] = useState({});
+  const findStoryById = (id) => stories.find((story) => story.id === id);
+  const handleStory = (story) => {
+    const foundStory = findStoryById(story.id);
+    const profileData = getUserHandler(story.userId);
+    setSelectedProfile(profileData);
+    setSelectedHistory(foundStory);
+    toggleShowStory(!showStory);
+  };
+
   return (
-    <React.Fragment>
+    <Fragment>
       <section className="stories" data-testid="stories">
         <div className="container">
-          <button className={"user__thumb user__thumb--hasNew"}>
-            <div className="user__thumb__wrapper">
-              <img
-                src="https://viniciusvinna.netlify.app/assets//api-instagram/profiles/black-panther/black-panther-profile.jpg"
-                alt="T'Challa"
-              />
-            </div>
-          </button>
-          <button className="user__thumb false">
-            <div className="user__thumb__wrapper">
-              <img
-                src="https://viniciusvinna.netlify.app/assets//api-instagram/profiles/bruce/bruce-profile.jpg"
-                alt="Bruce Wayne"
-              />
-            </div>
-          </button>
-          <button className="user__thumb false">
-            <div className="user__thumb__wrapper">
-              <img
-                src="https://viniciusvinna.netlify.app/assets//api-instagram/profiles/gamora/gamora-profile.jpg"
-                alt="Gamora"
-              />
-            </div>
-          </button>
+          {stories.map((story, index) => {
+            const profileData = getUserHandler(story.userId);
+
+            return (
+              <button
+                key={story.id}
+                onClick={() => handleStory(story)}
+                className={`user__thumb ${
+                  index === 0 && "user__thumb--hasNew"
+                }`}
+              >
+                <div className="user__thumb__wrapper">
+                  <img src={profileData.avatar} alt={profileData.name} />
+                </div>
+              </button>
+            );
+          })}
         </div>
       </section>
-
-      {showStory && <Story />}
-    </React.Fragment>
+      {showStory && (
+        <Story
+          story={selectedStory}
+          user={selectedProfile}
+          handleClose={() => toggleShowStory(!showStory)}
+        />
+      )}
+    </Fragment>
   );
 };
-
 export default Stories;

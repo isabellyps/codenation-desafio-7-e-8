@@ -47,20 +47,20 @@ button {
   display: flex;
   border-radius: 100%;
   overflow: hidden;
+  &__wrapper {
+    border-radius: 100%;
+    border: 2px solid #16202B;
+    display: inline-block;
+    overflow: hidden;
+  }
+  
+  & img {
+    height: 100%;
+    width: 100%;
+  }
+  
+  &--hasNew {
+    background: linear-gradient(45deg, #D51589 0%, #FF991C 100%);
+  }
 }
 
-.user__thumb__wrapper {
-  border-radius: 100%;
-  border: 2px solid #16202B;
-  display: inline-block;
-  overflow: hidden;
-}
-
-.user__thumb img {
-  height: 100%;
-  width: 100%;
-}
-
-.user__thumb--hasNew {
-  background: linear-gradient(45deg, #D51589 0%, #FF991C 100%);
-}
